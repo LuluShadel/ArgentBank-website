@@ -1,5 +1,5 @@
 import '../../style/header.css'
-import Logo from '../../assets/img/argentBankLogo.png'
+import Logo from '../../assets/argentBankLogo.png'
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
