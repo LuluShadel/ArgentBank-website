@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import './style/config.css'
+import './style/config.css';
 
 import Header from './components/Header';
-import App from './main'
-import Error from './routes';
+import Footer from "./components/Footer";
+import App from './main';
+import Error from './routes/Error';
+import SignIn from "./routes/SignIn"
 
 //redux
 import { Provider } from 'react-redux';
@@ -28,9 +30,11 @@ root.render(
     <Header />
     <Routes> 
           <Route path="/" element={<App />} />
+          <Route path='/SignIn' element={<SignIn />} />
           <Route path="*" element={<Error />} />
 
     </Routes>
+    <Footer />
     </Router>
     </Provider>,
   
