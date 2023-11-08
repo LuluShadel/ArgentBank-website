@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import App from './main';
 import Error from './routes/Error';
 import SignIn from "./routes/SignIn"
+import Profile from './routes/profile';
 
 //redux
 import { Provider } from 'react-redux';
@@ -31,6 +32,7 @@ root.render(
     <Routes> 
           <Route path="/" element={<App />} />
           <Route path='/SignIn' element={<SignIn />} />
+          <Route path ="/Profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
 
     </Routes>
