@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../action/user.action";
 import "../../style/SignIn.css"
 import React, {useState} from "react"
 import { useNavigate } from 'react-router-dom';
 
-const apiLogin = "http://localhost:3001/api/v1/user/login"
+
+
 
 
 
@@ -12,52 +15,19 @@ export default function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
+    
 
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
 
-    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const userData = {
-            email,
-            password,
-        };
-        
-        try {
-            const response = await fetch(apiLogin, {
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-
-            })
-
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.body.token;
-                localStorage.setItem('token', token);
-                setEmail("");
-                setPassword(""); 
-                navigate('/Profile');
-                
-                
-            }
-            else if (response.status === 400)  {
-                alert("Invalid email or password")
-                
-              }
-             
-             } catch (error) {
-                console.error('Erreur lors de la connexion :', error);
-             }
-
+        dispatch(loginUser(email,password,navigate))
     }
-
+        
    
     
 
