@@ -1,9 +1,14 @@
-import { LOGIN_USER, LOGIN_USER_FAILDED, LOGIN_USER_SUCCES} from "../action/user.action";
+import { LOGIN_USER, LOGIN_USER_FAILDED, LOGIN_USER_SUCCES, LOGOUT_USER, USER_PROFILE} from "../action/user.action";
+
 
 const initialState = { 
-    users : "",
     isLoggedIn : false,
+    errorMessage : null,
+    userProfile : "",
 }; 
+
+
+
 
 export default function userReducer (state = initialState, action) {
     switch (action.type) {
@@ -14,11 +19,24 @@ export default function userReducer (state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
+                errorMessage : null,
             };
         case LOGIN_USER_FAILDED :
             return {
                 ...state,
                 isLoggedIn: false,
+                errorMessage : action.payload,
+            }
+
+        case LOGOUT_USER : 
+        return {
+            ...state,
+                isLoggedIn: false,
+        }
+        case USER_PROFILE :
+            return {
+                ...state,
+                userProfile: action.payload,
             }
         
             default :

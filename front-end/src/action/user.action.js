@@ -1,9 +1,12 @@
 
 
 
+
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGIN_USER_FAILDED = "LOGIN_USER_FAILDED"
 export const LOGIN_USER_SUCCES = "LOGIN_USER_SUCCES"
+export const LOGOUT_USER = "LOGOUT_USER"
+export const USER_PROFILE = "USER_PROFILE"
 
 export const userLoginSuccess = () => ({
     type: LOGIN_USER,
@@ -19,17 +22,32 @@ export const userLoginSuccess = () => ({
 
   // gestion erreur connexion 
 
-  export const loginUserFailed = () => ({
-    type : LOGIN_USER_FAILDED, 
+  export const loginUserFailed = (errorMessage) =>({ 
+  
+      type: LOGIN_USER_FAILDED,
+      payload: errorMessage,
+    });
+
+  // gestion de la deconnexion
+  export const logoutUser = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token")
+    return {
+      type: LOGOUT_USER,
+    };
+  };
+
+
+// recuperation du profile
+  export const userProfile = () => ({
+    type : USER_PROFILE
   })
 
-
-  
 
 
 
 // connexion 
-export const loginUser=(email,password,navigate) => {
+export const loginUser=(email,password,navigate,rememberMe) => {
     
     return async (dispatch) => {
 
@@ -40,6 +58,7 @@ export const loginUser=(email,password,navigate) => {
         };
         
         try {
+        
             const response = await fetch("http://localhost:3001/api/v1/user/login", {
                 method:'POST',
                 headers:{
@@ -53,23 +72,65 @@ export const loginUser=(email,password,navigate) => {
             const token = data.body.token;
 
             if (response.status===200) {
+                if (rememberMe) {
                 localStorage.setItem('token', token);
+                }
+                else {
+                    sessionStorage.setItem('token',token)
+                }
                 navigate('/Profile');
                 dispatch (loginUserSucces())
-                console.log(data)
-                
-                
+                dispatch(fetchUserProfile())
+                  
             }
-            else if (response.status === 400)  {
-                alert("Invalid email or password")
+            
+            }
+            catch {
                 localStorage.removeItem("token");
-                dispatch (loginUserFailed())
-                
-              }
-             
-             } catch (error) {
-                console.error('Erreur lors de la connexion :', error);
-             }
+                sessionStorage.removeItem("token")
+                const errorMessage = "Invalid email or password"
+                dispatch(loginUserFailed(errorMessage))
+                console.log("mdp or email invalid")
+            }    
+        
+    }
+    }
 
-    }
-    }
+
+    // récupération du profile connecter grâce au token 
+
+    export const fetchUserProfile = () => {
+      return async (dispatch) => {
+        let token = localStorage.getItem("token");
+    
+        if (!token) {
+          token = sessionStorage.getItem("token");
+        }
+    
+        if (!token) {
+          return;
+        }
+    
+        try {
+          const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+                method:'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+    
+          if (response.status === 200) {
+            const data = await response.json()
+           
+            dispatch({
+              type: USER_PROFILE,
+              payload: data.body,  // ajout du profil dans le store
+            });
+            
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    };
