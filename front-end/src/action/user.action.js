@@ -8,6 +8,7 @@ export const LOGIN_USER_SUCCES = "LOGIN_USER_SUCCES"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const USER_PROFILE = "USER_PROFILE"
 export const UPDATE_PROFILE = "UPDATE_PROFILE"
+export const NEW_USER="NEW_USER"
 
 export const userLoginSuccess = () => ({
     type: LOGIN_USER,
@@ -49,6 +50,10 @@ export const userLoginSuccess = () => ({
   export const updateProfile =() => ({
     type : UPDATE_PROFILE
   })
+
+  //nouvel utilisateur 
+
+  
 
 
 
@@ -123,6 +128,7 @@ export const loginUser=(email,password,navigate,rememberMe) => {
                 method:'POST',
               headers: {
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
               },
             }
           );
@@ -191,3 +197,46 @@ export const loginUser=(email,password,navigate,rememberMe) => {
 
     }
   }
+
+
+  // nouvelle utilisateur 
+
+  export const newUser=(email,password,lastName,firstName,userName) => {
+    
+    return async (dispatch) => {
+
+
+        const userData = {
+            email,
+            password,
+            lastName,
+            firstName,
+            userName,
+        };
+        
+        try {
+        
+            const response = await fetch("http://localhost:3001/api/v1/user/signup", {
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+                
+
+            })
+            const data = await response.json();
+            
+
+            if (response.status===200) {
+                console.log(data, "fetch sign up ok ")
+                  
+            }
+            
+            }
+            catch {
+                console.error("error sign up")
+            }    
+        
+    }
+    }

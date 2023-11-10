@@ -32,6 +32,7 @@ export default function userReducer (state = initialState, action) {
         return {
             ...state,
                 isLoggedIn: false,
+                userProfile : ""
         }
         case USER_PROFILE :
             return {

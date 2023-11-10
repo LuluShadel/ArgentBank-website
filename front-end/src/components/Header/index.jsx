@@ -38,14 +38,20 @@ return (
       </Link>
       <div>
         {!token && (
-          <NavLink to="/SignIn" className="main-nav-item" href="./sign-in.html">
+          <nav>
+          <NavLink to="/SignIn" className="main-nav-item">
             <i className="fa fa-user-circle"></i>
             Sign In
           </NavLink>
+          <NavLink to="/SignUp" className="main-nav-item">
+          <i className="fa fa-user-circle"></i>
+          Sign Up
+        </NavLink>
+        </nav>
         )}
         {token && (
           <>
-            <NavLink to='/' className='main-nav-item' onClick={handleSignOut}>
+            <NavLink to='/Profile' className='main-nav-item'>
               <i className="fa fa-user-circle"></i>
               {userProfile.userName}
             </NavLink>

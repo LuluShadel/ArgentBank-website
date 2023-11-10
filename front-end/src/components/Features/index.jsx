@@ -1,5 +1,4 @@
 import "../../style/features.css"
-import data from "../../data/features.json"
 
 
 
@@ -8,19 +7,17 @@ import data from "../../data/features.json"
 
 
 
-    export default function Features() {
-        const featData = data;
+
+    export default function Feature({icon,title,description,alt}) {
+        
       
         return (
-          <section className="features">
-            <h2 className="sr-only">Features</h2>
-            {featData.map((feature, index) => (
-              <div className="feature-item" key={index}>
-                <img src={feature.icon} alt="Feature Icon" className="feature-icon" />
-                <h3 className="feature-item-title">{feature.title}</h3>
-                <p>{feature.description}</p>
+          
+              <div className="feature-item" >
+                <img src={icon} alt={alt} className="feature-icon" />
+                <h3 className="feature-item-title">{title}</h3>
+                <p>{description}</p>
               </div>
-            ))}
-          </section>
+         
         );
       }

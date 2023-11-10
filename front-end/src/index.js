@@ -9,6 +9,7 @@ import App from './main';
 import Error from './routes/Error';
 import SignIn from "./routes/SignIn"
 import Profile from './routes/profile';
+import SignUp from './routes/signUp';
 
 //redux
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ root.render(
     <Routes> 
           <Route path="/" element={<App />} />
           <Route path='/SignIn' element={<SignIn />} />
+          <Route path='/SignUp' element={<SignUp />} />
           <Route path ="/Profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
 
