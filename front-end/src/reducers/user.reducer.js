@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGIN_USER_FAILDED, LOGIN_USER_SUCCES, LOGOUT_USER, USER_PROFILE} from "../action/user.action";
+import { LOGIN_USER, LOGIN_USER_FAILDED, LOGIN_USER_SUCCES, LOGOUT_USER, USER_PROFILE, UPDATE_PROFILE} from "../action/user.action";
 
 
 const initialState = { 
@@ -38,6 +38,11 @@ export default function userReducer (state = initialState, action) {
                 ...state,
                 userProfile: action.payload,
             }
+        case UPDATE_PROFILE : 
+        return {
+            ...state,
+            userProfile: action.payload,
+        }
         
             default :
             return state 

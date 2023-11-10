@@ -20,7 +20,7 @@ export default function SignIn() {
 
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
-    const handleRememberMe = (e) => setRememberMe(true)
+    const handleRememberMe = () => setRememberMe(true)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();

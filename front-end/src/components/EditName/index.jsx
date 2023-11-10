@@ -1,12 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../style/modal.css"
+import { useState } from "react";
+
+import {changeUserName} from "../../action/user.action"
 
 
 export default function EditName ({closeEdit}) {
+const dispatch = useDispatch()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(changeUserName(newUserName))
+        setNewUserName("");
     }
+
+    const [newUserName, setNewUserName] = useState("")
+
+
+    const handleNewUserName = (e) => setNewUserName(e.target.value)
 
   
     const userProfile = useSelector((state) => state.userReducer.userProfile)
@@ -37,8 +49,8 @@ export default function EditName ({closeEdit}) {
         type="text"
         id="UserName"
         placeholder="Enter your new user name"
-        /*value={newUserName}
-        onChange={handleUserNameChange}*/
+        value={newUserName}
+        onChange={handleNewUserName}
       />
     </div>
 

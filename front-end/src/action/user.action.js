@@ -7,6 +7,7 @@ export const LOGIN_USER_FAILDED = "LOGIN_USER_FAILDED"
 export const LOGIN_USER_SUCCES = "LOGIN_USER_SUCCES"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const USER_PROFILE = "USER_PROFILE"
+export const UPDATE_PROFILE = "UPDATE_PROFILE"
 
 export const userLoginSuccess = () => ({
     type: LOGIN_USER,
@@ -41,6 +42,12 @@ export const userLoginSuccess = () => ({
 // recuperation du profile
   export const userProfile = () => ({
     type : USER_PROFILE
+  })
+
+  //changement du userName 
+
+  export const updateProfile =() => ({
+    type : UPDATE_PROFILE
   })
 
 
@@ -134,3 +141,53 @@ export const loginUser=(email,password,navigate,rememberMe) => {
         }
       };
     };
+
+
+
+    // changement de userName 
+
+    export const changeUserName = (newUserName) => {
+
+      return async (dispatch) => {
+        let token = localStorage.getItem("token");
+    
+        if (!token) {
+          token = sessionStorage.getItem("token");
+        }
+    
+        if (!token) {
+          return;
+        }
+
+        
+
+        try {
+
+          const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+                method:'PUT',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                userName: newUserName
+              })
+            }
+          )
+
+          if (response.status === 200) {
+            const data = await response.json()
+            
+            dispatch({
+              type: UPDATE_PROFILE,
+              payload: data.body,  // modification du profile dans le store 
+            });
+
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+
+    }
+  }
