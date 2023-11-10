@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import "../../style/modal.css"
+import "../../style/editName.css"
 import { useState } from "react";
 
 import {changeUserName} from "../../action/user.action"
@@ -26,10 +26,9 @@ const dispatch = useDispatch()
 
     return (
         <div className="edit-name">
-  <h1>Changes to your personal data</h1>
+  <h1>Edit user info</h1>
 
   <form className="form-edit-name" onSubmit={handleSubmit} >
-  <i className="fa-solid fa-xmark" onClick={closeEdit}></i>
   <div className="input-wrapper">
       <label htmlFor="FirstName">FirstName</label>
       <span>{userProfile.firstName}</span>
@@ -53,10 +52,14 @@ const dispatch = useDispatch()
         onChange={handleNewUserName}
       />
     </div>
-
+      <div className="buttons">
     <button className="sign-in-button" type="submit">
-      Change
+      Save
     </button>
+    <button className="sign-in-button" onClick={closeEdit}  >
+      Cancel
+    </button>
+    </div>
   </form>
 </div>
     )

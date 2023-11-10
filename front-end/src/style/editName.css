@@ -15,16 +15,32 @@
   }
 
 .edit-name{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+}
+
+.edit-name h1 {
+    color: black;
+}
+
+#UserName{
+    border: 1px solid black;
 }
 
 .form-edit-name {
     background-color: white;
     padding: 20px;
     color: black;
+    border: 2px solid #00bc77;
+    border-radius: 30px;
+    margin-bottom: 20px;
 }
-.fa-xmark{
-    float: right;
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
