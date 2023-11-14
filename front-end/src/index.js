@@ -3,14 +3,9 @@ import ReactDOM from 'react-dom/client';
 
 import './style/config.css';
 
-import Header from './components/Header';
-import Footer from "./components/Footer";
-import App from './main';
-import Error from './routes/Error';
-import SignIn from "./routes/SignIn"
-import Profile from './routes/profile';
-import SignUp from './routes/signUp';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import App from './app';
+
+
 
 //redux
 import { Provider } from 'react-redux';
@@ -33,18 +28,7 @@ const store = configureStore ({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <Router>
-    <Header />
-    <Routes> 
-          <Route path="/" element={<App />} />
-          <Route path='/SignIn' element={<SignIn />} />
-          <Route path='/SignUp' element={<SignUp />} />
-          <Route path ="/Profile" element={<Profile />} />
-          <Route path="*" element={<Error />} />
-
-    </Routes>
-    <Footer />
-    </Router>
+    <App />
     </Provider>,
   
 );

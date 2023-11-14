@@ -1,15 +1,15 @@
-import Hero from "./components/Hero";
-import Feature from "./components/Features";
-import chatIcon from "../src/assets/icon-chat.png"
-import moneyIcon from "../src/assets/icon-money.png"
-import securityIcon from "../src/assets/icon-security.png"
-import "./style/features.css"
+import Hero from "../../components/Hero";
+import Feature from "../../components/Features";
+import chatIcon from "../../assets/icon-chat.png"
+import moneyIcon from "../../assets/icon-money.png"
+import securityIcon from "../../assets/icon-security.png"
+import "../../style/features.css"
 
 
 
 
 
-function App() {
+function Home() {
   
   return (
     <div>
@@ -42,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

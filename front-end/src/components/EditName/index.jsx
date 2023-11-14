@@ -43,11 +43,10 @@ const dispatch = useDispatch()
     </div>
     <div className="input-wrapper">
       <label htmlFor="UserName">UserName</label>
-      <span>{userProfile.userName}</span>
       <input
         type="text"
         id="UserName"
-        placeholder="Enter your new user name"
+        placeholder={userProfile.userName}
         value={newUserName}
         onChange={handleNewUserName}
       />
