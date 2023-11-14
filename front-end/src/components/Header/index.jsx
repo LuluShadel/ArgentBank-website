@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
 import { logoutUser } from '../../action/user.action'
+import { persistor } from '../../index.js'
 
 function Header () {
 
@@ -21,6 +22,7 @@ function Header () {
     e.preventDefault();
     dispatch(logoutUser());
     navigate('/');
+    persistor.purge(); // vide les données gardés avec peersistStore
   };
 
   const userProfile = useSelector((state) => state.userReducer.userProfile)
