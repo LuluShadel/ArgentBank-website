@@ -12,6 +12,7 @@
   .input-wrapper input {
     padding: 5px;
     font-size: 1.2rem;
+    border-radius: 10px;
   }
 
   .input-wrapper span {
@@ -41,7 +42,6 @@
     background-color: white;
     padding: 20px;
     color: black;
-    border: 2px solid #00bc77;
     border-radius: 30px;
     margin-bottom: 20px;
 }

@@ -28,7 +28,7 @@ export default function Profile () {
     return (
         <div className="main bg-dark">
         <div className="header">
-        <h1>Welcome back <br />{userProfile.userName}</h1>
+        <h1>Welcome back <br />{userProfile.firstName} {userProfile.lastName}</h1>
         <button className="edit-button" onClick={handleModifClick}>Edit Name</button>
 
         {isModalOpen &&
