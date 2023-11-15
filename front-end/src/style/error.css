@@ -1,0 +1,17 @@
+.error_title {
+    color: #00bc77;
+    font-size: 5em;
+}
+
+.error_text{
+    color: #00bc77;
+    font-size: 3em;
+}
+
+.error_link{
+    display: flex;
+    justify-content: center;
+    color: #00bc77;
+    font-size: 1em;
+    margin-bottom: 3em;
+}
