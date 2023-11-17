@@ -1,8 +1,8 @@
 import Hero from "../../components/Hero";
 import Feature from "../../components/Features";
-import chatIcon from "../../assets/icon-chat.png"
-import moneyIcon from "../../assets/icon-money.png"
-import securityIcon from "../../assets/icon-security.png"
+import chatIcon from "../../assets/icon-chat.webp"
+import moneyIcon from "../../assets/icon-money.webp"
+import securityIcon from "../../assets/icon-security.webp"
 import "../../style/features.css"
 
 

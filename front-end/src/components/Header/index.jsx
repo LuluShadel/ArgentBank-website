@@ -1,5 +1,5 @@
 import '../../style/header.css'
-import Logo from '../../assets/argentBankLogo.png'
+import Logo from '../../assets/argentBankLogo.webp'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
