@@ -22,7 +22,7 @@ function Header () {
     e.preventDefault();
     dispatch(logoutUser());
     navigate('/');
-    persistor.purge(); // vide les données gardés avec peersistStore
+    persistor.purge(); // vide les données gardés avec persistStore
   };
 
   const userProfile = useSelector((state) => state.userReducer.userProfile)

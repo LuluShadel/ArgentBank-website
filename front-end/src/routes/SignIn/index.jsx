@@ -11,6 +11,7 @@ export default function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false)
+    const [missingEmail, setMissingEmail] = useState('');
  
 
 
@@ -27,7 +28,14 @@ export default function SignIn() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(loginUser(email,password,navigate,rememberMe))
+        
+        if (email === '' || password === '') {
+          setMissingEmail('Please complete all required fields.');
+        } else {
+          setMissingEmail('');
+          dispatch(loginUser(email,password,navigate,rememberMe))
+        }
+        
        
     }
         
@@ -71,6 +79,9 @@ export default function SignIn() {
   
             
             {loginError && <p style={{ color: 'red' }}>{loginError}</p>}
+            {missingEmail && <p style={{ color: 'red' }}>{missingEmail}</p>}
+
+            
             
             <button className="sign-in-button" type="submit">Sign In</button>
             
